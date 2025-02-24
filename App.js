@@ -4,14 +4,23 @@ import CategoriesScreen from './screens/CategoriesScreen';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
 import FoodOverviewScreen from './screens/FoodOverviewScreen';
+import FoodDetailScreen from './screens/FoodDetailScreen';
 
 const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: { backgroundColor: '#eee0e5' },
+          headerTintColor: 'white',
+          contentStyle: { backgroundColor: '#eee0e5' },
+        }}
+      >
         <Stack.Screen name='Categories' component={CategoriesScreen} />
         <Stack.Screen name='Foods' component={FoodOverviewScreen} />
+        <Stack.Screen name='FoodDetail' component={FoodDetailScreen} options={{title:"İçerik"}} />
+
       </Stack.Navigator>
     </NavigationContainer>
   )
