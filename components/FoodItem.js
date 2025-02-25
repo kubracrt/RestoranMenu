@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     borderRadius: 10,
   },
-  innerView: {},
   image: {
     width: '100%',
     height: 200,
