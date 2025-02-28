@@ -4,7 +4,6 @@ import { CATEGORIES } from '../data/dummy-data';
 import CategoryGrid from '../components/CategoryGrid';
 import { useNavigation } from '@react-navigation/native';
 
-
 export default function CategoriesScreen() {
   
   const navigation = useNavigation();

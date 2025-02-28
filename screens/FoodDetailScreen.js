@@ -12,15 +12,25 @@ import { Ionicons } from '@expo/vector-icons';
 import { FOODS } from '../data/dummy-data';
 import FoodIngredients from '../components/FoodIngredients';
 import { FavoritesContext } from '../store/favoritescontext';
+import { useSelector, useDispatch } from 'react-redux';
+import { addFavorite, removeFavorite } from '../store/redux/favorites';
+import { add } from 'react-native-reanimated';
 
 
 export default function FoodDetailScreen({ route, navigation }) {
-  const favoriteFoodContext = useContext(FavoritesContext)
+
+  const favoriteFoodIds = useSelector((state) => state.favoriteFoods.ids)
+
+  // const favoriteFoodContext = useContext(FavoritesContext) //
 
   const foodId = route.params.foodId;
   const selectedFood = FOODS.find((food) => food.id === foodId);
 
-  const foodIsFavorite = favoriteFoodContext.ids.includes(foodId)
+  // const foodIsFavorite = favoriteFoodContext.ids.includes(foodId) //
+
+  const dispatch = useDispatch()
+
+  const foodIsFavorite = favoriteFoodIds.includes(foodId)
 
   const pressHandler = () => {
     console.log('Tıklandı!');
@@ -28,9 +38,11 @@ export default function FoodDetailScreen({ route, navigation }) {
 
   function changeFavorite() {
     if (foodIsFavorite) {
-      favoriteFoodContext.removeFavorite(foodId)
+      dispatch(removeFavorite({ id: foodId }))
+      // favoriteFoodContext.removeFavorite(foodId) //
     } else {
-      favoriteFoodContext.addFavorite(foodId)
+      dispatch(addFavorite({ id: foodId }))
+      // favoriteFoodContext.addFavorite(foodId) //
     }
   }
   useLayoutEffect(() => {
